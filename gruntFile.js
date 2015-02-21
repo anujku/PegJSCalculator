@@ -55,10 +55,10 @@ module.exports = function (grunt) {
     clean: ['<%= distdir %>/*'],
     copy: {
       libassets: {
-        files: [{dest : '<%= distdir %>/lib/css/', src : 'vendor/bootstrap/css/*.*', expand : true, flatten : true},
-				{dest : '<%= distdir %>/lib/fonts/', src : 'vendor/bootstrap/fonts/*.*', expand : true, flatten : true},
+        files: [{dest : '<%= distdir %>/lib/css/', src : 'libs/bootstrap/css/*.*', expand : true, flatten : true},
+				{dest : '<%= distdir %>/lib/fonts/', src : 'libs/bootstrap/fonts/*.*', expand : true, flatten : true},
                 {dest : '<%= distdir %>/grammar/', src : 'src/grammar/*.*', expand : true, flatten : true},
-                {dest : '<%= distdir %>/lib/', src : 'vendor/pegjs/*.*', expand : true, flatten : true}]
+                {dest : '<%= distdir %>/lib/', src : 'libs/pegjs/*.*', expand : true, flatten : true}]
       },
       css: {
         files: [{dest : '<%= distdir %>/', src : '<%= src.css %>', expand : true, flatten : true}]
@@ -83,11 +83,11 @@ module.exports = function (grunt) {
         }
       },
       bootstrap: {
-        src:['vendor/bootstrap/*.js'],
+        src:['libs/bootstrap/*.js'],
         dest: '<%= distdir %>/lib/bootstrap.js'
       },
       jquery: {
-        src:['vendor/jquery/*.js'],
+        src:['libs/jquery/*.js'],
         dest: '<%= distdir %>/lib/jquery.js'
       }
     },
