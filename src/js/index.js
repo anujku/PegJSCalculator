@@ -3,7 +3,7 @@ window.pegjsmain = {
     containerBorder : 5,
     containerMargin : 20,
     parser : null,
-	
+
 	initialize : function() {
         // Set output div height
         var outputDiv = document.getElementById('output');
@@ -16,15 +16,15 @@ window.pegjsmain = {
         // Set container width
         var definitionContainer = document.getElementById('definitionContainer');
         var resultContainer = document.getElementById('resultContainer');
-        
+
         definitionContainer.style.width = ((mainContentDiv.clientWidth / 2) - 2*this.containerBorder)+ "px";
         definitionContainer.style.height = (outputDiv.clientHeight - headerDiv.clientHeight - 2*this.containerMargin) + "px";
         resultContainer.style.width = ((mainContentDiv.clientWidth / 2) - 2*this.containerBorder)+ "px";
         resultContainer.style.height = (outputDiv.clientHeight - headerDiv.clientHeight - 2*this.containerMargin) + "px";
-        
+
         // Load grammar file and build the parser
         var req = new XMLHttpRequest();
-        req.open("GET", 'grammar/myGrammar.pegjs', true);
+        req.open("GET", 'grammar/grammer.pegjs', true);
         req.onload = function(e) {
             var grammarInput =  req.responseText;
             if ((grammarInput != null) && (PEG != null)) {
@@ -33,7 +33,7 @@ window.pegjsmain = {
         };
         req.send();
 	},
-    
+
     parseDefinition : function(event) {
         var elm = (event.srcElement != null) ? event.srcElement : event.target;
         var content = elm.value;
@@ -52,7 +52,7 @@ window.pegjsmain = {
             }
         }
     },
-    
+
     displayResult : function(output, success) {
         var errorDisplay = document.getElementById('errorDisplay');
         var resultDisplay = document.getElementById('resultDisplay');
@@ -71,5 +71,5 @@ window.pegjsmain = {
             }
         }
     }
-	
+
 };
