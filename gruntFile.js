@@ -11,8 +11,8 @@ module.exports = function (grunt) {
   // Default task.
   grunt.registerTask('default', ['jshint','build']);
   grunt.registerTask('build', ['clean','concat','copy:libassets', 'copy:css']);
-  grunt.registerTask('int-build', ['default', 'copy:server', 'nodemon']);
-  
+  grunt.registerTask('run', ['default', 'copy:server', 'nodemon']);
+
 
   // Print a timestamp (useful for when watching)
   grunt.registerTask('timestamp', function() {
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
           file: '<%= serverFile %>',
           nodeArgs: ['--debug'],
           env: {
-            PORT: '8888'
+            PORT: '8090'
           },
           cwd: '<%= distdir %>'
         }
