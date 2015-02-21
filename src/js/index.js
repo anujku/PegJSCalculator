@@ -24,7 +24,7 @@ window.pegjsmain = {
 
         // Load grammar file and build the parser
         var req = new XMLHttpRequest();
-        req.open("GET", 'grammar/grammer.pegjs', true);
+        req.open("GET", 'grammar/grammar.pegjs', true);
         req.onload = function(e) {
             var grammarInput =  req.responseText;
             if ((grammarInput != null) && (PEG != null)) {
