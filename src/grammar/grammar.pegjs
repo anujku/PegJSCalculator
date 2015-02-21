@@ -1,22 +1,59 @@
-/*
- *  Grammar for simple arithmetic operations such as multiplication and addition
- *  with some integer and float numbers.
- */
+start
+    = any
 
-start = additive
+additive
+    = left:primary "+" right:any { return left + right; }
 
-additive = left:multiplicative space* "+" space* right:additive { return left + right; } / multiplicative
+multiplicative
+    = left:primary "*" right:any { return left * right; }
 
-multiplicative = left:primary space* "*" space* right:multiplicative { return left * right; } / primary
+subtractive
+    = left:primary "-" right:any { return left - right; }
 
-primary = number / "(" space* additive:additive space* ")" { return additive; }
+divisive
+    = left:primary "/" right:any { return left / right; }
 
-number = float / integer
+power
+    = left:primary "^" right:any { return Math.pow(left, right); }
 
-float "a float" = digits1:[0-9]+ "." digits2:[0-9]+ {
-    return parseFloat(digits1.join("") + "." + digits2.join(""));
-}
+frac
+    = "\\frac{" nominator:any "}{" denominator:any "}"
+    {
+        if (denominator === 0) {
+            if (nominator < 0) {
+                return Number.POSITIVE_INFINITY;
+            } else {
+                return Number.NEGATIVE_INFINITY;
+            }
+        } else {
+            return nominator / denominator;
+        }
+    }
 
-integer "an integer" = digits:[0-9]+ { return parseInt(digits.join(""), 10); }
+abs
+    = "\\abs{" argument:any "}"
+    {
+        return Math.abs(argument);
+    }
 
-space = [ \t]
+any
+    = multiplicative
+    / divisive
+    / power
+    / additive
+    / subtractive
+    / primary
+
+primary
+    = frac
+    / abs
+    / float
+    / integer
+    / "(" any:any ")" { return any; }
+    / "" { return 0; }
+
+float "float"
+    = left:[0-9]+ "." right:[0-9]+ { return parseFloat(left.join("") + "." + right.join("")); }
+
+integer "integer"
+    = digits:[0-9]+ { return parseInt(digits.join(""), 10); }
