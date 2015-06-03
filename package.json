@@ -1,7 +1,7 @@
 {
-  "author": "Florian Chatre",
-  "name": "pegjsapp",
-  "homepage": "https://github.com/flo-c",
+  "author": "Anuj Kulkarni",
+  "name": "PegJSCalculator",
+  "homepage": "https://github.com/anujku/PegJSCalculator",
   "version": "0.0.1-SNAPSHOT",
   "engines": {
     "node": ">= 0.8.4"
